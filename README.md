@@ -46,3 +46,16 @@ The codebase also contains a git-subtree snapshot of [lib_pg_query](https://gith
 ## Contributing
 
 See the [Community Guidelines](https://github.com/electric-sql/meta) including the [Guide to Contributing](https://github.com/electric-sql/meta/blob/main/CONTRIBUTING.md) and [Contributor License Agreement](https://github.com/electric-sql/meta/blob/main/CLA.md).
+
+
+## Fingerprinting
+
+iex [23:43 :: 1] > PgQuery.Parser.fingerprint_query("SELECT * from accounts where id = 5")
+{:ok, "efbf0e87caa203d1"}
+iex [23:43 :: 2] > PgQuery.Parser.fingerprint_query("SELECT * from accounts where id = 6")
+{:ok, "efbf0e87caa203d1"}
+iex [23:43 :: 3] > PgQuery.Parser.fingerprint_query("SELECT * from users where id = 6")
+{:ok, "a0ead580058af585"}
+iex [23:43 :: 4] > PgQuery.Parser.fingerprint_query("SELECT * from users where id = 8")
+{:ok, "a0ead580058af585"}
+iex [23:43 :: 5] > 
